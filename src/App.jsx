@@ -19,9 +19,9 @@ function App() {
   useEffect(() => {
     const currentPage = localStorage.getItem("page")
     if(!currentPage) {
-      setTimeout(() => navigate("/"), 0);
+      navigate("/");
     } else {
-      setTimeout(() => navigate(currentPage), 0);
+      navigate(currentPage);
     }
   }, [])
 
