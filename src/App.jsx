@@ -5,7 +5,7 @@ import Movies from "./pages/movies/Movies";
 import MoviesDetail from "./pages/movies/MoviesDetail";
 import Series from "./pages/series/Series";
 import SeriesDetail from "./pages/series/SeriesDetail";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Login from "./layouts/Login";
 
 function App() {
@@ -14,7 +14,13 @@ function App() {
   );
   const auth = localStorage.getItem("auth");
   const location = useLocation();
-  console.log(location);
+  const navigate = useNavigate();
+  console.log(location.pathname);
+
+  useEffect(() => {
+    navigate(location.pathname)
+  }, [])
+
   return (
     <>
       {isLoggedIn == "true" || auth == "true" ? (
