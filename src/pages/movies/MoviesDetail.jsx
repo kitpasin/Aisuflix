@@ -30,6 +30,7 @@ function MovieDetail() {
                   height={"100%"}
                   light={movie.cover}
                   playing
+                  volume={.25}
                   controls
                 />
               </div>
