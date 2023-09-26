@@ -15,12 +15,20 @@ function App() {
   const auth = localStorage.getItem("auth");
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location.pathname);
-
+  
   useEffect(() => {
-    navigate(location.pathname)
+    const currentPage = localStorage.getItem("page")
+    if(!currentPage) {
+      navigate("/")
+    } else {
+      navigate(currentPage)
+    }
   }, [])
 
+  useEffect(() => {
+    localStorage.setItem("page", location.pathname)
+  }, [location])
+  
   return (
     <>
       {isLoggedIn == "true" || auth == "true" ? (
