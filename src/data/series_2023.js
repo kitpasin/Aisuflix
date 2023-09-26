@@ -47,6 +47,11 @@ export const series_2023 = [
         title: "episode 893",
         video: "https://drive.google.com/file/d/1Vml4A-X9wNXYAPvwNsKxKffjUIstBa4j/preview",
       },
+      {
+        ep: 894,
+        title: "episode 894",
+        video: "https://drive.google.com/file/d/1zjwGd3j74mTNdfotv6HknqzlMm8aG4Hf/preview",
+      },
     ],
   },
 ];
