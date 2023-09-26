@@ -40,22 +40,47 @@ export const series_2023 = [
       {
         ep: 892,
         title: "episode 892",
-        video: "https://drive.google.com/file/d/1E-bT9xSwhrQFd4NJ30CVSVHhHUHW6VQ-/preview",
+        video: "https://drive.google.com/file/d/16gni2_ZHaD6oJsYyLqhuzJhqx7L8gOX3/preview",
       },
       {
         ep: 893,
         title: "episode 893",
-        video: "https://drive.google.com/file/d/1Vml4A-X9wNXYAPvwNsKxKffjUIstBa4j/preview",
+        video: "https://drive.google.com/file/d/1G1sTeCmFrHcrx5vMoVUa3SbuIRHda2oE/preview",
       },
       {
         ep: 894,
         title: "episode 894",
-        video: "https://drive.google.com/file/d/1zjwGd3j74mTNdfotv6HknqzlMm8aG4Hf/preview",
+        video: "https://drive.google.com/file/d/1AAxGJg7gT_WxAKt3pHJHcRrnQxzOIYXR/preview",
       },
       {
         ep: 895,
         title: "episode 895",
-        video: "https://drive.google.com/file/d/1GZ1Kq10h_O5Ev4DqVStjp5mJdN14txwk/preview",
+        video: "https://drive.google.com/file/d/1j2wuD6pAUVShWvqHnaGyG0vO8dDwCUNm/preview",
+      },
+      {
+        ep: 896,
+        title: "episode 896",
+        video: "https://drive.google.com/file/d/1xoZRl2QlklmwWTwrllrvGAy1O0mEPUdd/preview",
+      },
+      {
+        ep: 897,
+        title: "episode 897",
+        video: "https://drive.google.com/file/d/1xFMZIFD04mnII9DiyCBLg0ZQxfFhdss4/preview",
+      },
+      {
+        ep: 898,
+        title: "episode 898",
+        video: "https://drive.google.com/file/d/1pI8zD24Q12Rgzdz_GsepXAXrYM0aEtq9/preview",
+      },
+      {
+        ep: 899,
+        title: "episode 899",
+        video: "https://drive.google.com/file/d/1KIiGJxUDcgDnyXbdnHBCBFfGl3fLrg38/preview",
+      },
+      {
+        ep: 900,
+        title: "episode 900",
+        video: "https://drive.google.com/file/d/17jxbHlrxP6Uwmfj9xd6qYyfbpNfZqMEC/preiew",
       },
     ],
   },
