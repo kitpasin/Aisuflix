@@ -45,10 +45,10 @@ function Home() {
           </div>
           <div
             style={{ textShadow: "1px 5px 10px #000" }}
-            className="2xl:-mt-80 xl:-mt-60 lg:-mt-40 px-4 xl:px-12 pb-12 text-white text-4xl font-bold flex flex-col gap-4 xl:gap-12 w-full"
+            className="2xl:-mt-80 xl:-mt-60 lg:-mt-40 px-4 xl:px-12 pb-12 text-white text-4xl font-bold flex flex-col gap-4 xl:gap-12 w-full mb-12"
           >
             <div className="flex flex-col gap-4">
-              <p className="text-sm md:text-xl lg:text-2xl xl:text-4xl">
+              <p className="text-sm md:text-xl lg:text-2xl xl:text-4xl z-50">
                 Movies
               </p>
               <Swiper
