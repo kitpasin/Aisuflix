@@ -1,8 +1,7 @@
 import { Menu, MenuItem } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 function Header({ setIsLoggedIn }) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);

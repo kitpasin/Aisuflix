@@ -1,11 +1,11 @@
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Header from "./layouts/Header";
 import Home from "./pages/home/Home";
 import Movies from "./pages/movies/Movies";
 import MoviesDetail from "./pages/movies/MoviesDetail";
 import Series from "./pages/series/Series";
 import SeriesDetail from "./pages/series/SeriesDetail";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Login from "./layouts/Login";
 
 function App() {
@@ -14,20 +14,6 @@ function App() {
   );
   const auth = localStorage.getItem("auth");
   const location = useLocation();
-  const navigate = useNavigate();
-  
-  useEffect(() => {
-    const currentPage = localStorage.getItem("page")
-    if(!currentPage) {
-      navigate("/");
-    } else {
-      navigate(currentPage);
-    }
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem("page", location.pathname)
-  }, [location.pathname])
   
   return (
     <>
