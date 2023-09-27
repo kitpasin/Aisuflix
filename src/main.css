@@ -118,8 +118,9 @@ ul.MuiPagination-ul.css-wjh20t-MuiPagination-ul {
 }
 
 .MuiInputBase-root {
-  font-size: "0.875rem",
+  font-size: "0.875rem";
 }
+
 .MuiAutocomplete-inputRoot {
-  padding-top: "4px",
+  padding-top: "4px";
 }
