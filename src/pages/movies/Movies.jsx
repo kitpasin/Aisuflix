@@ -83,7 +83,7 @@ function Movies() {
               >
                 <figure>
                   <img
-                    className="rounded-[10px] w-full h-[480px]"
+                    className="rounded-[10px] w-full h-[360px] 2xl:h-[400px]"
                     src={movie.cover}
                     alt={movie.title}
                   />

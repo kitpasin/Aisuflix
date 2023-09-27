@@ -83,12 +83,12 @@ function Series() {
               >
                 <figure>
                   <img
-                    className="rounded-[10px] w-full h-[480px]"
+                    className="rounded-[10px] w-full h-[360px] 2xl:h-[400px]"
                     src={serie.cover}
                     alt={serie.title}
                   />
                 </figure>
-                <div className="absolute bottom-0 left-0 bg-black bg-opacity-70 w-full rounded-b-[10px] py-2 text-xl text-center">
+                <div className="absolute bottom-0 left-0 bg-black bg-opacity-70 w-full rounded-b-[10px] py-2 text-[12px] xl:text-[16px] text-center">
                   <p>{serie.title}</p>
                 </div>
               </Link>

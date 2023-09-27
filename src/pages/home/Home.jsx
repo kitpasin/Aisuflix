@@ -87,7 +87,7 @@ function Home() {
                   <SwiperSlide key={movie.id} className="relative">
                     <Link to={movie.path} className="w-full h-full">
                       <img src={movie.cover} alt="" />
-                      <div className="bg-black bg-opacity-70 absolute bottom-0 left-0 w-full text-center text-sm p-2">
+                      <div className="bg-black bg-opacity-70 absolute bottom-0 left-0 w-full text-center text-sm p-1">
                         <p>{movie.title}</p>
                       </div>
                     </Link>
@@ -135,7 +135,7 @@ function Home() {
                   <SwiperSlide key={serie.id} className="relative">
                     <Link to={serie.path} className="w-full h-full">
                       <img src={serie.cover} alt="" />
-                      <div className="bg-black bg-opacity-70 absolute bottom-0 left-0 w-full text-center text-sm p-2">
+                      <div className="bg-black bg-opacity-70 absolute bottom-0 left-0 w-full text-center text-sm p-1">
                         <p>{serie.title}</p>
                       </div>
                     </Link>
