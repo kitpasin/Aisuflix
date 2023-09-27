@@ -15,7 +15,7 @@ function Movies() {
     const matchesTitle = title ? movie.title === title : true;
     const matchesGenre = genre ? movie.genres.includes(genre) : true;
     return matchesTitle && matchesGenre;
-  })
+  });
 
   const pageCount = Math.ceil(filteredMovies.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -32,7 +32,7 @@ function Movies() {
 
   useEffect(() => {
     if (currentPage !== 1 && moviesToDisplay.length <= itemsPerPage) {
-      setCurrentPage(1)
+      setCurrentPage(1);
     }
   }, [title, genre]);
 
@@ -108,13 +108,19 @@ function Movies() {
                 </Link>
               ))}
             </div>
-            <div className="w-full p-4 pt-0 flex justify-center xl:justify-end items-center">
+            <div className="w-full p-4 pt-0 flex justify-center sm:justify-end items-center">
               <Pagination
+                size="small"
                 count={pageCount}
                 page={currentPage}
                 onChange={(event, newPage) => setCurrentPage(newPage)}
                 variant="outlined"
                 shape="rounded"
+                sx={{
+                  background: "#fff",
+                  padding: ".5rem",
+                  borderRadius: "10px",
+                }}
               />
             </div>
           </>

@@ -32,7 +32,7 @@ function Series() {
 
   useEffect(() => {
     if (currentPage !== 1 && seriesToDisplay.length <= itemsPerPage) {
-      setCurrentPage(1)
+      setCurrentPage(1);
     }
   }, [title, genre]);
 
@@ -62,7 +62,9 @@ function Series() {
               borderRadius: "10px",
               opacity: genre && "50%",
             }}
-            renderInput={(params) => <TextField {...params} label="Titles" size="small" />}
+            renderInput={(params) => (
+              <TextField {...params} label="Titles" size="small" />
+            )}
           />
           <Autocomplete
             disabled={title !== null}
@@ -88,36 +90,42 @@ function Series() {
           </div>
         ) : (
           <>
-          <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 rounded-[10px] p-4">
-            {seriesToDisplay.map((serie) => (
-              <Link
-                to={serie.path}
-                key={serie.id}
-                className="bg-slate-900 rounded-[10px] flex flex-col gap-4 text-white text-md font-bold relative cursor-pointer p-1"
-              >
-                <figure className="w-full overflow-hidden">
-                  <img
-                    className="rounded-[10px] hover:scale-125 w-full h-full 2xl:h-[480px] transition-all ease-in-out duration-300"
-                    src={serie.cover}
-                    alt={serie.title}
-                  />
-                </figure>
-                <div className="absolute bottom-0 left-0 bg-black bg-opacity-70 w-full rounded-b-[10px] py-1 text-[12px] xl:text-[16px] text-center">
-                  <p>{serie.title}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-          <div className="w-full p-4 pt-0 flex justify-center xl:justify-end items-center">
-          <Pagination
-            count={pageCount}
-            page={currentPage}
-            onChange={(event, newPage) => setCurrentPage(newPage)}
-            variant="outlined"
-            shape="rounded"
-          />
-        </div>
-        </>
+            <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 rounded-[10px] p-4">
+              {seriesToDisplay.map((serie) => (
+                <Link
+                  to={serie.path}
+                  key={serie.id}
+                  className="bg-slate-900 rounded-[10px] flex flex-col gap-4 text-white text-md font-bold relative cursor-pointer p-1"
+                >
+                  <figure className="w-full overflow-hidden">
+                    <img
+                      className="rounded-[10px] hover:scale-125 w-full h-full 2xl:h-[480px] transition-all ease-in-out duration-300"
+                      src={serie.cover}
+                      alt={serie.title}
+                    />
+                  </figure>
+                  <div className="absolute bottom-0 left-0 bg-black bg-opacity-70 w-full rounded-b-[10px] py-1 text-[12px] xl:text-[16px] text-center">
+                    <p>{serie.title}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <div className="w-full p-4 pt-0 flex justify-center sm:justify-end items-center">
+              <Pagination
+                size="small"
+                count={pageCount}
+                page={currentPage}
+                onChange={(event, newPage) => setCurrentPage(newPage)}
+                variant="outlined"
+                shape="rounded"
+                sx={{
+                  background: "#fff",
+                  padding: ".5rem",
+                  borderRadius: "10px",
+                }}
+              />
+            </div>
+          </>
         )}
       </Card>
     </>
