@@ -82,6 +82,17 @@ function Register() {
     } else if (username === "" && password === "" && confirm === "") {
       setUsernameError(true);
       setPasswordError(true);
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+      });
+      Toast.fire({
+        icon: "error",
+        title: "Please enter all fields.",
+      })
     } else {
       setPasswordError(true);
       const Toast = Swal.mixin({
@@ -97,6 +108,20 @@ function Register() {
       })
     }
   }
+
+  function handleKeyPress(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleSignUp();
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [handleKeyPress]);
 
   useEffect(() => {
     if (username !== "") {
