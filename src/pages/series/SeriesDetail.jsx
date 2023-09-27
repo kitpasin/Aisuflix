@@ -38,11 +38,11 @@ function SeriesDetail() {
       >
         {series.map((serie) => (
           <div key={serie.id}>
-            <div className="bg-[#0f172a] px-4 py-2 text-white text-xl text-center font-bold">
+            <div className="bg-[#0f172a] px-4 py-2 text-white text-sm xl:text-xl text-center font-bold">
               <p>{serie.title}</p>
             </div>
             <div className="flex flex-col xl:flex-row justify-between gap-4 p-4">
-              <div className="bg-slate-900 w-full h-[480px] md:h-[600px] xl:h-[720px] xl:w-8/12 p-2 rounded-[10px] relative">
+              <div className="bg-slate-900 w-full h-[360px] mn:h-[480px] md:h-[600px] xl:h-[720px] xl:w-8/12 p-2 rounded-[10px] relative">
                 {loading ? (
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                     <PulseLoader color="#475569" />
