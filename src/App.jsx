@@ -14,18 +14,18 @@ function App() {
   );
   const auth = localStorage.getItem("auth");
   const location = useLocation();
-  
+
   return (
     <>
       {isLoggedIn == "true" || auth == "true" ? (
         <>
           <Header setIsLoggedIn={setIsLoggedIn} />
           <main
-            className={`w-full h-full min-h-screen sm:h-[calc(100vh-60px)] ${
+            className={`w-full h-[calc(100vh-60px)] ${
               location.pathname == "/"
                 ? "bg-black"
                 : "bg-[url('/images/main_background.png')]"
-            }  bg-cover overflow-x-hidden`}
+            }  bg-cover overflow-x-hidden overflow-y-auto`}
           >
             <div
               className={`${location.pathname === "/" ? "p-0" : "p-4 xl:p-12"}`}
