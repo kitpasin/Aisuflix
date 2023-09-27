@@ -108,19 +108,14 @@ function Movies() {
                 </Link>
               ))}
             </div>
-            <div className="w-full p-4 pt-0 flex justify-center sm:justify-end items-center">
+            <div className="w-full px-4 py-3 bg-white flex justify-center sm:justify-end items-center">
               <Pagination
-                size="small"
                 count={pageCount}
                 page={currentPage}
                 onChange={(event, newPage) => setCurrentPage(newPage)}
                 variant="outlined"
                 shape="rounded"
-                sx={{
-                  background: "#fff",
-                  padding: ".5rem",
-                  borderRadius: "10px",
-                }}
+                size="small"
               />
             </div>
           </>

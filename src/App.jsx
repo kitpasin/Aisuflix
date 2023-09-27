@@ -16,9 +16,9 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("auth") || false
   );
+  const { accounts } = useAccount();
   const auth = localStorage.getItem("auth");
   const location = useLocation();
-  const { accounts } = useAccount();
 
   useEffect(() => {
     setLoading(true);
@@ -48,13 +48,12 @@ function App() {
         <>
           {isLoggedIn == "true" || auth == "true" ? (
             <>
-              <Header setIsLoggedIn={setIsLoggedIn} />
-              <main
-                className={`w-full h-[calc(100vh-60px)] ${
+              <Header setIsLoggedIn={setIsLoggedIn} location={location} />
+              <main className={`w-full h-full min-h-screen ${
                   location.pathname == "/"
                     ? "bg-black"
-                    : "bg-[url('/images/main_background.png')]"
-                }  bg-cover overflow-x-hidden overflow-y-auto`}
+                    : "bg-[url('/images/main_background.png')] pt-[60px]"
+                }  bg-cover`}
               >
                 <div
                   className={`${

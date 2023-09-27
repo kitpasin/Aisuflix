@@ -1,8 +1,10 @@
 import { Menu, MenuItem } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-function Header({ setIsLoggedIn }) {
+
+function Header({ setIsLoggedIn, location }) {
+  const [scrollYPosition, setScrollYPosition] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -48,8 +50,18 @@ function Header({ setIsLoggedIn }) {
     });
   }
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollYPosition(window.scrollY);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <header className="bg-slate-900 w-full h-[60px] px-4 xl:px-12 sticky top-0 z-10">
+    <header className={`${scrollYPosition > 0 && "bg-slate-900"} ${location.pathname !== "/" && "bg-slate-900"} w-full h-[60px] px-4 xl:px-12 fixed top-0 z-10`}>
       <nav className="w-full h-full flex items-center gap-12 text-white text-sm md:text-md xl:text-xl font-bold">
         <Link to="/" className="w-full max-w-[100px] sm:block hidden">
           <img src="/images/netflix_logo.png" />
@@ -72,7 +84,7 @@ function Header({ setIsLoggedIn }) {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
-            className="w-[45px] h-[45px] rounded-full flex-none cursor-pointer"
+            className="w-[40px] h-[40px] rounded-full flex-none cursor-pointer"
           >
             <img className="rounded-full" src="/images/profile.jpg" alt="" />
           </figure>
