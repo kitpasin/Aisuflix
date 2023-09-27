@@ -80,7 +80,7 @@ export const series_2023 = [
       {
         ep: 900,
         title: "episode 900",
-        video: "https://drive.google.com/file/d/17jxbHlrxP6Uwmfj9xd6qYyfbpNfZqMEC/preiew",
+        video: "https://drive.google.com/file/d/17jxbHlrxP6Uwmfj9xd6qYyfbpNfZqMEC/preview",
       },
     ],
   },

@@ -21,7 +21,7 @@ function App() {
         <>
           <Header setIsLoggedIn={setIsLoggedIn} />
           <main
-            className={`w-full h-[calc(100vh-60px)] ${
+            className={`w-full h-full sm:h-[calc(100vh-60px)] ${
               location.pathname == "/"
                 ? "bg-black"
                 : "bg-[url('/images/main_background.png')]"
