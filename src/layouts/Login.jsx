@@ -1,14 +1,24 @@
 import { Button, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 function Login({ setIsLoggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
 
   function handleSignIn() {
-    if (username === "admin" && password === "1234") {
+    const existingAccountsString = localStorage.getItem("accounts");
+    const existingAccounts = existingAccountsString
+      ? JSON.parse(existingAccountsString)
+      : [];
+    const checkAccount = existingAccounts.filter((account) => {
+      const matchesUsername = username ? account.username === username : true;
+      const matchesPassword = password ? account.password === password : true;
+      return matchesUsername && matchesPassword;
+    });
+    if (username !== "" && password !== "" && checkAccount.length > 0) {
       setError(false);
       const Toast = Swal.mixin({
         toast: true,
@@ -47,15 +57,15 @@ function Login({ setIsLoggedIn }) {
 
   function handleKeyPress(event) {
     if (event.key === "Enter") {
-        event.preventDefault();
-        handleSignIn();
+      event.preventDefault();
+      handleSignIn();
     }
   }
 
   useEffect(() => {
-    document.addEventListener('keydown', handleKeyPress);
+    document.addEventListener("keydown", handleKeyPress);
     return () => {
-      document.removeEventListener('keydown', handleKeyPress);
+      document.removeEventListener("keydown", handleKeyPress);
     };
   }, [handleKeyPress]);
 
@@ -101,10 +111,13 @@ function Login({ setIsLoggedIn }) {
           </Button>
         </div>
         <div className="px-4 flex justify-center gap-2 font-bold text-sm">
-          <p>Don't have an account</p>
-          <p className="underline text-[#1565c0] cursor-pointer">
+          <p>Don't have an account?</p>
+          <Link
+            to="/register"
+            className="underline text-[#1565c0] cursor-pointer"
+          >
             Sign up here!
-          </p>
+          </Link>
         </div>
       </div>
     </div>

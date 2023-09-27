@@ -89,3 +89,37 @@
 .swiper-rtl .swiper-button-prev:after {
   color: #fff;
 }
+
+.css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root.Mui-disabled {
+  background: #fff;
+  opacity: 0.38;
+}
+
+button.MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeMedium.MuiPaginationItem-outlined.MuiPaginationItem-rounded.Mui-selected.MuiPaginationItem-page.css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root {
+  background: #0f172a;
+  font-weight: bold;
+  color: #fff;
+}
+
+button.MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeMedium.MuiPaginationItem-outlined.MuiPaginationItem-rounded.MuiPaginationItem-previousNext.css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root,
+button.MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeMedium.MuiPaginationItem-outlined.MuiPaginationItem-rounded.MuiPaginationItem-page.css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root {
+  background: #fff;
+  font-weight: bold;
+  color: #0f172a;
+}
+
+.MuiPaginationItem-root.MuiPaginationItem-sizeMedium.MuiPaginationItem-outlined.MuiPaginationItem-rounded.MuiPaginationItem-ellipsis.css-1v2lvtn-MuiPaginationItem-root {
+  color: #fff;
+  font-weight: bold;
+}
+
+ul.MuiPagination-ul.css-wjh20t-MuiPagination-ul {
+  line-height: 40px;
+}
+
+.MuiInputBase-root {
+  font-size: "0.875rem",
+}
+.MuiAutocomplete-inputRoot {
+  padding-top: "4px",
+}

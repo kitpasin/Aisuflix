@@ -1,4 +1,4 @@
-import { Autocomplete, Card, TextField } from "@mui/material";
+import { Autocomplete, Card, Pagination, TextField } from "@mui/material";
 import { movies_2023 } from "../../data/movies_2023";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -8,12 +8,19 @@ function Movies() {
   const [title, setTitle] = useState(null);
   const [genre, setGenre] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
-  const filterdMovies = movies_2023.filter((movie) => {
+  const filteredMovies = movies_2023.filter((movie) => {
     const matchesTitle = title ? movie.title === title : true;
     const matchesGenre = genre ? movie.genres.includes(genre) : true;
     return matchesTitle && matchesGenre;
-  });
+  })
+
+  const pageCount = Math.ceil(filteredMovies.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const moviesToDisplay = filteredMovies.slice(startIndex, endIndex);
 
   useEffect(() => {
     setLoading(true);
@@ -21,6 +28,12 @@ function Movies() {
       setLoading(false);
     }, 1000);
     return () => clearTimeout(timeoutId);
+  }, [title, genre, currentPage]);
+
+  useEffect(() => {
+    if (currentPage !== 1 && moviesToDisplay.length <= itemsPerPage) {
+      setCurrentPage(1)
+    }
   }, [title, genre]);
 
   return (
@@ -37,7 +50,7 @@ function Movies() {
         </div>
         <div className="pt-4 px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
           <Autocomplete
-            disabled={genre}
+            disabled={genre !== null}
             disablePortal
             size="small"
             id="combo-box-demo"
@@ -52,7 +65,7 @@ function Movies() {
             renderInput={(params) => <TextField {...params} label="Titles" />}
           />
           <Autocomplete
-            disabled={title}
+            disabled={title !== null}
             disablePortal
             size="small"
             id="combo-box-demo"
@@ -74,26 +87,37 @@ function Movies() {
             <PulseLoader color="#0f172a" />
           </div>
         ) : (
-          <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 rounded-[10px] p-4">
-            {filterdMovies.map((movie) => (
-              <Link
-                to={movie.path}
-                key={movie.id}
-                className="bg-slate-900 rounded-[10px] flex flex-col gap-4 text-white text-md font-bold relative cursor-pointer p-1"
-              >
-                <figure>
-                  <img
-                    className="rounded-[10px] w-full h-full 2xl:h-[480px]"
-                    src={movie.cover}
-                    alt={movie.title}
-                  />
-                </figure>
-                <div className="absolute bottom-0 left-0 bg-black bg-opacity-70 w-full rounded-b-[10px] py-1 text-[12px] xl:text-[16px] text-center">
-                  <p>{movie.title}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 rounded-[10px] p-4">
+              {moviesToDisplay.map((movie) => (
+                <Link
+                  to={movie.path}
+                  key={movie.id}
+                  className="bg-slate-900 rounded-[10px] flex flex-col gap-4 text-white text-md font-bold relative cursor-pointer p-1"
+                >
+                  <figure className="w-full overflow-hidden">
+                    <img
+                      className="rounded-[10px] hover:scale-125 w-full h-full sm:h-[360px] 2xl:h-[480px] transition-all ease-in-out duration-300"
+                      src={movie.cover}
+                      alt={movie.title}
+                    />
+                  </figure>
+                  <div className="absolute bottom-0 left-0 bg-black bg-opacity-70 w-full rounded-b-[10px] py-1 text-[12px] xl:text-[16px] text-center">
+                    <p>{movie.title}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <div className="w-full p-4 pt-0 flex justify-center xl:justify-end items-center">
+              <Pagination
+                count={pageCount}
+                page={currentPage}
+                onChange={(event, newPage) => setCurrentPage(newPage)}
+                variant="outlined"
+                shape="rounded"
+              />
+            </div>
+          </>
         )}
       </Card>
     </>

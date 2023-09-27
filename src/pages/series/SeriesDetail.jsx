@@ -58,7 +58,7 @@ function SeriesDetail() {
                     controls
                   />
                 ) : (
-                  <iframe className="block relative" src={getVideo} frameborder="0" width="100%" height="100%" allow="autoplay" allowFullScreen />
+                  <iframe className="block relative" src={getVideo} width="100%" height="100%" allow="autoplay" allowFullScreen />
                 )}
               </div>
               <div className="flex flex-col gap-4 w-full xl:w-4/12 text-white text-sm md:text-md xl:text-xl font-bold">

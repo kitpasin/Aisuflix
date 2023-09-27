@@ -5,8 +5,10 @@ import Movies from "./pages/movies/Movies";
 import MoviesDetail from "./pages/movies/MoviesDetail";
 import Series from "./pages/series/Series";
 import SeriesDetail from "./pages/series/SeriesDetail";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Login from "./layouts/Login";
+import Register from "./layouts/Register";
+import { useAccount } from "./context/AccountContext";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -14,6 +16,17 @@ function App() {
   );
   const auth = localStorage.getItem("auth");
   const location = useLocation();
+  const { accounts } = useAccount();
+
+  useEffect(() => {
+    const existingAccountsString = localStorage.getItem("accounts");
+    const existingAccounts = existingAccountsString
+      ? JSON.parse(existingAccountsString)
+      : [];
+    if (existingAccounts.length <= 1) {
+      localStorage.setItem("accounts", JSON.stringify(accounts));
+    }
+  }, []);
 
   return (
     <>
@@ -28,7 +41,7 @@ function App() {
             }  bg-cover overflow-x-hidden overflow-y-auto`}
           >
             <div
-              className={`${location.pathname === "/" ? "p-0" : "p-4 xl:p-12"}`}
+              className={`${location.pathname == "/" ? "p-0" : "p-4 xl:p-12"}`}
             >
               <Routes>
                 <Route path="/" element={<Home />} />
@@ -42,7 +55,10 @@ function App() {
           </main>
         </>
       ) : (
-        <Login setIsLoggedIn={setIsLoggedIn} />
+        <Routes>
+          <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
       )}
     </>
   );
