@@ -26,6 +26,7 @@ function Home() {
             <figure className="absolute top-12 left-8 w-[100px] md:w-[200px] xl:w-[300px] hidden sm:block">
               <img className="" src="/images/new.png" alt="" />
             </figure>
+            <div className="absolute top-0 w-full h-1/4 bg-gradient-to-t from-transparent via-opacity-15 to-opacity-35 via-opacity-58 to-black"/>
             <div className="absolute bottom-0 xl:bottom-12 2xl:bottom-20 w-full h-1/2 bg-gradient-to-b from-transparent via-opacity-15 to-opacity-35 via-opacity-58 to-black"/>
           </div>
           <div

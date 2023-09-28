@@ -61,7 +61,7 @@ function Header({ setIsLoggedIn, location }) {
   }, []);
 
   return (
-    <header className={`${scrollYPosition > 0 && "bg-slate-900"} ${location.pathname !== "/" && "bg-slate-900"} w-full h-[60px] px-4 xl:px-12 fixed top-0 z-10`}>
+    <header className={`${scrollYPosition > 0 ? "bg-slate-900 h-[60px]" : "h-[0px] top-[30px]"} ${location.pathname !== "/" && "bg-slate-900"} w-full px-4 xl:px-12 fixed top-0 z-10 transition-all ease-in-out duration-300`}>
       <nav className="w-full h-full flex items-center gap-12 text-white text-sm md:text-md xl:text-xl font-bold">
         <Link to="/" className="w-full max-w-[100px] sm:block hidden">
           <img src="/images/netflix_logo.png" />
