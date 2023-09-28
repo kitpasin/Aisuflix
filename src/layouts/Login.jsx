@@ -2,18 +2,18 @@ import { Button, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useAccount } from "../context/AccountContext";
+import { PulseLoader } from "react-spinners";
 
 function Login({ setIsLoggedIn }) {
+  const [loading, setLoading] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const { accounts } = useAccount();
 
   function handleSignIn() {
-    const existingAccountsString = localStorage.getItem("accounts");
-    const existingAccounts = existingAccountsString
-      ? JSON.parse(existingAccountsString)
-      : [];
-    const checkAccount = existingAccounts.filter((account) => {
+    const checkAccount = accounts.filter((account) => {
       const matchesUsername = username ? account.username === username : true;
       const matchesPassword = password ? account.password === password : true;
       return matchesUsername && matchesPassword;
@@ -69,58 +69,72 @@ function Login({ setIsLoggedIn }) {
     };
   }, [handleKeyPress]);
 
+  useEffect(() => {
+    setLoading(true);
+    const timeoutId = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   return (
-    <div className="bg-[url('/images/main_background.png')] w-full h-screen bg-cover relative">
-      <div
-        style={{ boxShadow: "1px 5px 10px #000" }}
-        className="flex flex-col justify-between absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-full max-w-[320px] sm:max-w-[480px] h-[320px] px-4 py-8 rounded-[10px]"
-      >
-        <p className="text-2xl font-bold text-center">Sign in</p>
-        <div className="flex flex-col px-4 gap-4">
-          <TextField
-            id="username"
-            label="Username"
-            variant="outlined"
-            fullWidth
-            type="text"
-            size="small"
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-            error={error && username === ""}
-          />
-          <TextField
-            id="password"
-            label="Password"
-            variant="outlined"
-            fullWidth
-            type="password"
-            size="small"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            error={error && password === ""}
-          />
+    <>
+      {loading ? (
+        <div className="bg-[url('/images/main_background.png')] bg-cover w-full h-screen flex justify-center items-center">
+          <PulseLoader color="#DB0000" size={30} />
         </div>
-        <div className="px-4">
-          <Button
-            onClick={handleSignIn}
-            variant="contained"
-            fullWidth
-            size="medium"
+      ) : (
+        <div className="bg-[url('/images/main_background.png')] w-full h-screen bg-cover relative">
+          <div
+            style={{ boxShadow: "1px 5px 10px #000" }}
+            className="flex flex-col justify-between absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-full max-w-[320px] sm:max-w-[480px] h-[320px] px-4 py-8 rounded-[10px]"
           >
-            <p className="capitalize font-bold">Sign in</p>
-          </Button>
+            <p className="text-2xl font-bold text-center">Sign in</p>
+            <div className="flex flex-col px-4 gap-4">
+              <TextField
+                id="username"
+                label="Username"
+                variant="outlined"
+                fullWidth
+                type="text"
+                size="small"
+                value={username}
+                onChange={(event) => setUsername(event.target.value)}
+                error={error && username === ""}
+              />
+              <TextField
+                id="password"
+                label="Password"
+                variant="outlined"
+                fullWidth
+                type="password"
+                size="small"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                error={error && password === ""}
+              />
+            </div>
+            <div className="px-4">
+              <Button
+                onClick={handleSignIn}
+                variant="contained"
+                fullWidth
+                size="medium"
+              >
+                <p className="capitalize font-bold">Sign in</p>
+              </Button>
+            </div>
+            <div className="px-4 flex justify-center gap-2 font-bold text-sm">
+              <p>Don't have an account?</p>
+              <Link to="/" className="underline text-[#1565c0] cursor-pointer">
+                Sign up here!
+              </Link>
+            </div>
+          </div>
         </div>
-        <div className="px-4 flex justify-center gap-2 font-bold text-sm">
-          <p>Don't have an account?</p>
-          <Link
-            to="/register"
-            className="underline text-[#1565c0] cursor-pointer"
-          >
-            Sign up here!
-          </Link>
-        </div>
-      </div>
-    </div>
+      )}
+      ;
+    </>
   );
 }
 

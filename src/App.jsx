@@ -5,82 +5,48 @@ import Movies from "./pages/movies/Movies";
 import MoviesDetail from "./pages/movies/MoviesDetail";
 import Series from "./pages/series/Series";
 import SeriesDetail from "./pages/series/SeriesDetail";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Login from "./layouts/Login";
 import Register from "./layouts/Register";
-import { useAccount } from "./context/AccountContext";
-import { PulseLoader } from "react-spinners";
 
 function App() {
-  const [loading, setLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("auth") || false
   );
-  const { accounts } = useAccount();
   const auth = localStorage.getItem("auth");
   const location = useLocation();
 
-  useEffect(() => {
-    setLoading(true);
-    const timeoutId = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-    return () => clearTimeout(timeoutId);
-  }, []);
-
-  useEffect(() => {
-    const existingAccountsString = localStorage.getItem("accounts");
-    const existingAccounts = existingAccountsString
-      ? JSON.parse(existingAccountsString)
-      : [];
-    if (existingAccounts.length <= 1) {
-      localStorage.setItem("accounts", JSON.stringify(accounts));
-    }
-  }, []);
-
   return (
     <>
-      {loading ? (
-        <div className="bg-[url('/images/main_background.png')] bg-cover w-full h-screen flex justify-center items-center">
-          <PulseLoader color="#DB0000" size={30} />
-        </div>
-      ) : (
+      {isLoggedIn == "true" || auth == "true" ? (
         <>
-          {isLoggedIn == "true" || auth == "true" ? (
-            <>
-              <Header setIsLoggedIn={setIsLoggedIn} location={location} />
-              <main className={`w-full h-full min-h-screen ${
-                  location.pathname == "/"
-                    ? "bg-black"
-                    : "bg-[url('/images/main_background.png')] pt-[60px]"
-                }  bg-cover`}
-              >
-                <div
-                  className={`${
-                    location.pathname == "/" ? "p-0" : "p-4 xl:p-12"
-                  }`}
-                >
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/movies" element={<Movies />} />
-                    <Route path="/movies/:movieID" element={<MoviesDetail />} />
-                    <Route path="/series" element={<Series />} />
-                    <Route path="/series/:serieID" element={<SeriesDetail />} />
-                  </Routes>
-                </div>
-              </main>
-            </>
-          ) : (
-            <Routes>
-              <Route
-                path="/"
-                element={<Login setIsLoggedIn={setIsLoggedIn} />}
-              />
-              <Route path="/register" element={<Register />} />
-            </Routes>
-          )}
+          <Header setIsLoggedIn={setIsLoggedIn} location={location} />
+          <main
+            className={`w-full h-full min-h-screen ${
+              location.pathname == "/"
+                ? "bg-black"
+                : "bg-[url('/images/main_background.png')] pt-[60px]"
+            }  bg-cover`}
+          >
+            <div
+              className={`${location.pathname == "/" ? "p-0" : "p-4 xl:p-12"}`}
+            >
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/home" element={<Home />} />
+                <Route path="/movies" element={<Movies />} />
+                <Route path="/movies/:movieID" element={<MoviesDetail />} />
+                <Route path="/series" element={<Series />} />
+                <Route path="/series/:serieID" element={<SeriesDetail />} />
+              </Routes>
+            </div>
+          </main>
         </>
+      ) : (
+        <Routes>
+          <Route path="/" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
       )}
     </>
   );

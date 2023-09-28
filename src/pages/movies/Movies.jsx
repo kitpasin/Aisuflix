@@ -38,6 +38,7 @@ function Movies() {
 
   return (
     <>
+      <div className="absolute top-0 left-0 w-full h-[75px] xl:h-[100px] bg-gradient-to-t from-transparent via-opacity-15 to-opacity-35 via-opacity-58 to-black" />
       <Card
         sx={{
           background: "#334155",
