@@ -8,7 +8,7 @@ import {
   TextField,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -33,6 +33,7 @@ function Header({ setIsLoggedIn, location }) {
   const [username, setUsername] = useState("admin")
   const [password, setPassword] = useState("1234")
   const open = Boolean(anchorEl);
+  const navigate = useNavigate();
 
   function handleClick(event) {
     setAnchorEl(event.currentTarget);
@@ -79,6 +80,7 @@ function Header({ setIsLoggedIn, location }) {
           console.log("success");
           localStorage.setItem("auth", false);
           setIsLoggedIn(false);
+          navigate("/")
         });
       }
     });
@@ -130,12 +132,16 @@ function Header({ setIsLoggedIn, location }) {
               <img className="rounded-full" src="/images/profile.jpg" alt="" />
             </figure>
             <Menu
-              id="basic-menu"
               anchorEl={anchorEl}
               open={open}
               onClose={handleClose}
-              MenuListProps={{
-                "aria-labelledby": "basic-button",
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
               }}
             >
               <MenuItem onClick={hadleOpen}>Profile</MenuItem>
